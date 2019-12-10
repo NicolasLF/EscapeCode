@@ -6,7 +6,7 @@ global.$ = global.jQuery = $;
 
 import 'bootstrap';
 
-$('html').before('<!-- ' +
+$('body').prepend('<!-- ' +
     '\n' +
     '\n' +
     '\n' +

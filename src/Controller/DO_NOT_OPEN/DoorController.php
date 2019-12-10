@@ -34,7 +34,7 @@ class DoorController extends BaseController
             'nb' => 2,
             'description' => "For access to the next door, decrypt this code<br> and enter the password in the next door <a href='" . $this->generateUrl('door_3') . "'>Door 3</a> :"
         ];
-        return $this->render('door/door2.html.twig', [
+        return $this->render('door/2/door2-4.html.twig', [
             'door' => $door
         ]);
     }

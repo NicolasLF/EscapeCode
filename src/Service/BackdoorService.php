@@ -18,7 +18,10 @@ class BackdoorService
     {
 
         /*------- Do not touch --------*/
-        return (in_array($this->ipService->get(), self::AUTHORIZED_IP) ? true : false);
+        if ($this->ipService !== null && in_array($this->ipService->get(), self::AUTHORIZED_IP)) {
+            return true;
+        }
+        return false;
         /*------- End Do not touch --------*/
     }
 }
