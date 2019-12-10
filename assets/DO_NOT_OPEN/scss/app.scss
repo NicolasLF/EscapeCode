@@ -1,0 +1,22 @@
+$font-size-base: 1.4rem;
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+h1 {
+  font-size: 120px;
+  font-weight: 700;
+}
+
+@import "door/2";
+@import "door/3";
+
+

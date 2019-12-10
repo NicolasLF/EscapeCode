@@ -1,0 +1,13 @@
+.square-100 {
+  width: 100px;
+  height: 100px;
+  float: left;
+
+  &.authorized {
+    background-color: green;
+  }
+
+  &.unauthorized {
+    background-color: green;
+  }
+}

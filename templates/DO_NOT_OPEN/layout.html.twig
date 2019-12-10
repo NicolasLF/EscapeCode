@@ -1,0 +1,15 @@
+{% extends 'DO_NOT_OPEN/base.html.twig' %}
+
+{% block title %}Escape Code{% endblock %}
+
+{% block body %}
+    <!-- Main content -->
+    <div class="container">
+        <div class="row full-height align-content-center">
+            <h1 class="w-100">Door {{ door.nb }}</h1>
+            <p>{{ door.description|raw }}</p>
+            {% block content '' %}
+        </div>
+    </div>
+    <!-- #Main content -->
+{% endblock %}

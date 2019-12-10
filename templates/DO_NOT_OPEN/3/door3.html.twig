@@ -1,0 +1,10 @@
+{% extends 'DO_NOT_OPEN/layout.html.twig' %}
+
+{% block content %}
+    {% if backdoor %}
+        <div class="square-100 authorized mr-5"></div>
+        <p>Okay. You just opened the backdoor, Well done guy!<br>See you <a href="{{ path('door_4') }}">Door 4</a> for the rest, good luck.</p>
+    {% else %}
+        <div class="square-100 unauthorized"></div>
+    {% endif %}
+{% endblock %}
