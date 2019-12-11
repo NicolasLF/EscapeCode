@@ -2,7 +2,10 @@
 
 namespace App\Controller\DO_NOT_OPEN;
 
+use App\Entity\Student;
 use App\Service\BackdoorService;
+use Doctrine\Bundle\DoctrineBundle\Registry;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,11 +20,16 @@ class DoorController extends BaseController
      * @var BackdoorService
      */
     private $backdoor;
+    /**
+     * @var ManagerRegistry
+     */
+    private $registry;
 
-    public function __construct(SessionInterface $session, BackdoorService $backdoor)
+    public function __construct(SessionInterface $session, BackdoorService $backdoor, ManagerRegistry $registry)
     {
         $this->session = $session;
         $this->backdoor = $backdoor;
+        $this->registry = $registry;
     }
 
     /**
@@ -66,20 +74,52 @@ class DoorController extends BaseController
 
     }
 
-    /**
-     * @Route("/door-4", name="door_4")
-     */
     public function accessDoor4()
     {
         if (!$this->session->has('door4')) {
             return $this->redirectToRoute('door_3');
         }
-
         $door = [
             'nb' => 4,
+            'description' => "Welcome to Gate 4. It's good that you made it this far. But you're only at the beginning of your problems...<br> You must modify the SQL query in StudentRepository to get the same result as below. Update to see if it's okay, and you'll automatically be redirected to the next step."
+        ];
+
+        $sql = "SELECT student.city, MIN(student.birth_at) as smallest_birthday, SUM(student.secret_id) as sum_of_secret FROM student WHERE student.city = :city";
+
+        $statement = $this->getDoctrine()->getManager()->getConnection()->prepare($sql);
+        $statement->bindValue('city', 'La loupe');
+        $statement->execute();
+        $result = $statement->fetch();
+
+        $resultStudent = $this->registry->getRepository(Student::class)->findSecret();
+
+        if ($result === $resultStudent) {
+            $this->session->set('door5', true);
+            return $this->redirectToRoute('door_5');
+        }
+
+        return $this->render('DO_NOT_OPEN/4/door4.html.twig', [
+            'door' => $door,
+            'result' => $result,
+            'resultStudent' => $resultStudent,
+        ]);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Route("/door-5", name="door_5")
+     */
+    public function accessDoor5()
+    {
+        if (!$this->session->has('door5')) {
+            return $this->redirectToRoute('door_4');
+        }
+        $door = [
+            'nb' => 5,
             'description' => ""
         ];
-        return $this->render('DO_NOT_OPEN/4/door4.html.twig', [
+
+        return $this->render('DO_NOT_OPEN/5/door5.html.twig', [
             'door' => $door,
         ]);
     }

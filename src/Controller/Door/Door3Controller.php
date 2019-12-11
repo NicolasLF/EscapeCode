@@ -24,6 +24,7 @@ class Door3Controller extends BaseController
         $form = $qb->getForm();
         /*------- End Do not touch -------*/
 
+        //$form->handleRequest();
 
         /*------- Do not touch -------*/
         if ($form->isSubmitted() && $form->isValid()) {

@@ -1,4 +1,9 @@
 {% extends 'DO_NOT_OPEN/layout.html.twig' %}
 
 {% block content %}
+    <span class="w-100">The correct response is :<br>
+        <span class="small">An array showing all the students of "La loupe".For this students, displaying their city, the date of the oldest
+        student, as well as the sum of the id secrets.</span>
+        {{ dump(result) }}</span>
+    <span class="w-100">The response of your request is : {{ dump(resultStudent) }}</span>
 {% endblock %}
