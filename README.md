@@ -11,6 +11,7 @@ Good luck with that.
 
 ****Installation :****\
 - Clone the project and go to the root of the project.
+- Change the DATABASE_URL information with your own id
 - You just need to lunch this command in a root directory of your project ```./install.sh``` and it's done. That's all baby ;)!
 
 For run your project : 
