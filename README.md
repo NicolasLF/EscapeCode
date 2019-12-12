@@ -11,7 +11,9 @@ Good luck with that.
 
 ****Installation :****\
 - Clone the project and go to the root of the project.
-- Install the dependencies with the command: ```composer install``` then ```yarn install``` or ```npm install```
+- You just need to lunch this command in a root directory of your project ```./install.sh``` and it's done. That's all baby ;)!
+
+For run your project : 
 - Lunch your asset with ```yarn dev --watch``` or ```npm run watch```
 - And finally, lunch your server : ```symfony server:start``` or ```php bin/console server:run```
 

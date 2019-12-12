@@ -114,9 +114,10 @@ class DoorController extends BaseController
         if (!$this->session->has('door5')) {
             return $this->redirectToRoute('door_4');
         }
+
         $door = [
             'nb' => 5,
-            'description' => ""
+            'description' => "Congratulation !! You did it, but stay cool, the next time is more complicated... Good luck ;) "
         ];
 
         return $this->render('DO_NOT_OPEN/5/door5.html.twig', [
